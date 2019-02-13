@@ -96,7 +96,6 @@ class MainPage extends Component{
             <About/> 
             <BestList/> 
             <Footer/>
-           // <BestDetails/>
 
             </>
 
