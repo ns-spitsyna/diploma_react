@@ -8,7 +8,7 @@ import {Col, Row, Container} from 'reactstrap';
 import Footer from '../footer';
 import Banner from '../banner';
 import AboutOur from '../aboutOur';
-import ShopItems from '../shopItem';
+import ShopList from '../shopList';
 import {withRouter} from 'react-router-dom';
 class GoodsPage extends Component{
     render(){
@@ -27,12 +27,7 @@ class GoodsPage extends Component{
                         <Col lg={{ size: 10, offset: 1 }}>
                             <div className="shop__wrapper">
                             
-                                <ShopItems/>
-                                <ShopItems/>
-                                <ShopItems/>
-                                <ShopItems/>
-                                <ShopItems/>
-                                <ShopItems/>
+                               <ShopList/>
                             </div>
                         
                         </Col>
