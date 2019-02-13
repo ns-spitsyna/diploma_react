@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {CoffeePage, GoodsPage, MainPage, CoffeeItem} from '../../components/pages/';
+import {CoffeePage, GoodsPage, MainPage} from '../../components/pages/';
 
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import CoffeeService from '../../services/coffeeService';

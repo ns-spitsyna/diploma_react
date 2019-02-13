@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 //import Preview from '../preview';
 import About from '../about';
 import BestList from '../bestList';
-import BestDetails from '../bestDetails';
+//import BestDetails from '../bestDetails';
 
 import Header from '../header';
 import Footer from '../footer';

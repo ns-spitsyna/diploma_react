@@ -65,7 +65,7 @@ export default class BestList extends Component{
     }
 
    renderItems(arr){
-       console.log(arr);
+       //console.log(arr);
         return arr.map(({name, url,price}) => {
 
             return (
