@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-// import ShopItems from '../shopItem';
-// import {Col, Row, Container} from 'reactstrap';
-
-//import ShopItems from '../shopItem';
 import styled from 'styled-components';
+import Spinner from '../spinner';
+import idGenerator from 'react-id-generator';
+//import CoffeeService from '../../services/coffeeService';
+
 const ShopItem = styled.div`
     background: rgba(255,255,255,.65);
     border-radius: 8px;
     box-shadow: 5px 5px 15px rgba(0,0,0,.25);
-    margin: 60px 40px 0 40px;
+    margin: 0px 40px 60px 40px;
     min-height: 240px;
     padding: 22px 24px;
     transition: .3s all;
@@ -37,26 +37,60 @@ const ShopItem = styled.div`
 
 `  
 export default class ShopList extends Component {
-   
+     //coffeeService = new CoffeeService();
+    state = {
+        itemList: null,
+        loading: true,
+        error: false
+    };
+
+    componentDidMount(){
+
+      const {getData} = this.props;
+      
+      getData()
+        .then(itemList =>{
+               // console.log(itemList);
+            this.setState({
+                itemList,
+                loading: false
+            })
+        })
+    }
+
+   renderItems(arr){
+      
+        return arr.map(({name, country, url, price, description}) => {
+
+            return (
+                 
+                <ShopItem 
+                    key={idGenerator()}
+                     /* onClick = {()=>this.props.onItemSelected(name)} */ >
+                    <img src={url} alt="coffee"/>
+                    <div className="shop__item-title">
+                        {name}
+                    </div>
+                    <div className="shop__item-country">{country}</div>
+                    <div className="shop__item-price">{price}</div>
+                </ShopItem>
+            )
+        })
+    }
 
     render() {
+       const {itemList, loading} = this.state;
 
-       
+       // const errorMessage = error ? <ErrorMessage/> :null;
+        const spinner = loading ? <Spinner/>: null;
+        const content = !(loading) ?  this.renderItems(itemList) : null;
         return (
-            <>
-            
-                <ShopItem>
-                    <img src="https://www.sciencenews.org/sites/default/files/main/articles/100315_coffee_opener_NEW_0.jpg" alt="coffee"/>
-                    <div className="shop__item-title">
-                        Solimo Coffee Beans 2kg
-                    </div>
-                    <div className="shop__item-country">Brazil</div>
-                    <div className="shop__item-price">10.73$</div>
-                </ShopItem>
-            
-             
-           
-         </>
+            <>              
+                <div className="list__wrapper">
+                     {spinner}
+                     {content}  
+                 </div>
+            </>
         );
     }
 }

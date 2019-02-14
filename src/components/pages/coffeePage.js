@@ -12,9 +12,10 @@ import Banner from '../banner';
 import AboutOur from '../aboutOur';
 import {withRouter} from 'react-router-dom';
 
-
+import CoffeeService from '../../services/coffeeService.js';
 
 class CoffeePage extends Component{
+    coffeeService = new CoffeeService();
     render(){
         return(
             <>
@@ -38,11 +39,12 @@ class CoffeePage extends Component{
                         <Row>
                             <Col lg={{ size: 10, offset: 1 }}>
                             
-                            <ShopList/>
+                            <ShopList
+                                getData = {this.coffeeService.getAllCoffee}
+                            />
                                
                             </Col>
-                            
-                            
+                                                    
                         </Row>
                     </Container>
             </section>

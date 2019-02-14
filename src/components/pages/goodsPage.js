@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
-//import styled from 'styled-components';
 import {Col, Row, Container} from 'reactstrap';
-// import ShopSearch from '../shopSearch';
-// import ShopFilter from '../shopFilter';
-// import ShopItems from '../shopItem';
-
 import Footer from '../footer';
 import Banner from '../banner';
 import AboutOur from '../aboutOur';
 import ShopList from '../shopList';
 import {withRouter} from 'react-router-dom';
+import CoffeeService from '../../services/coffeeService.js';
+
 class GoodsPage extends Component{
+    coffeeService = new CoffeeService();
     render(){
         return(
             <>
@@ -19,21 +17,18 @@ class GoodsPage extends Component{
             <section className="shop">      
                 <Container>
                     
-                <AboutOur/>
-                    <div className="line"></div>
-                    
-                    <Row>
+                    <AboutOur/>
+                        <div className="line"></div>
                         
-                        <Col lg={{ size: 10, offset: 1 }}>
-                            <div className="shop__wrapper">
+                        <Row>
                             
-                               <ShopList/>
-                            </div>
-                        
-                        </Col>
-                        
-                        
-                    </Row>
+                            <Col lg={{ size: 10, offset: 1 }}>
+                              <ShopList
+                                    getData = {this.coffeeService.getAllGoods}
+                                />
+                            </Col>
+                            
+                        </Row>
                 </Container>
                 </section>
                    

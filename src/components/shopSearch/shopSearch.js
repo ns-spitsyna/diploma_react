@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
-import { Form} from 'reactstrap';
+import {Form} from 'reactstrap';
 
 const Label =styled.label`
 
         margin-right: 20px;
+        margin-bottom: 60px;
     
     
 `

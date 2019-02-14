@@ -1,3 +1,4 @@
+
 export default class CoffeeService{
 
      getResource = async () =>{
@@ -16,29 +17,29 @@ export default class CoffeeService{
         
         
     }
-     getAllCoffee = async () =>{
-        const res = await this.getResource();
-        return  res.coffee;
-        
-        
-    }
+    
       getAllCoffee = async () =>{
         const res = await this.getResource();
         return  res.coffee;
         
         
     }
-     getBest = async (id) =>{
+     getAllGoods = async () =>{
+        const res = await this.getResource();
+        return  res.goods;
         
-        const best = await this.getResource();
-        return best.bestsellers;
+        
     }
-    //this.coffeeService.getResource().then(res=>console.log(res.bestsellers));
-    // _transformBest( {name, url,price}) {
+    //  getBest = async (name) =>{
         
-    //         return  {name, url,price}
+    //    // this.coffeeService.getAllCoffee()
+    //           return this.getResource(`/${name}`);
+   
+    // }
+    
 
-    //     } 
+    //this.coffeeService.getResource().then(res=>console.log(res.bestsellers));
+   
         
      }
   

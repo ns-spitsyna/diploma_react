@@ -21,17 +21,69 @@ const ShopPoint = styled.div`
 
     `;
 
-export default class BestDetails extends Component {
+export default class ShopDetails extends Component {
+    state = {
+        itemDetails: null,
+        error: false
+    }
+
+    componentDidMount(){
+        this.updateChar();
+    }
+
+    componentDidUpdate(prevProps){
+        if(this.props.itemName !== prevProps.itemName){
+            this.updateChar();
+        }
+    }
+    componentDidCatch(){
+        
+        this.setState({
+            error: true
+        })
+    }
+    updateChar(){
+        const {itemName} = this.props;
+        if (!itemName) {
+            return;
+        }
+        
+       
+        const {getDetails} = this.props;
+        
+        getDetails(itemName)
+            .then((itemDetails) => {
+                this.setState({itemDetails})
+            })
+        //this.foo.bar = 0;    
+    }
+
 
     render() {
+        if (!this.state.itemDetails) {
+            return <span className="select-error">Please select a character</span>
+            
+        }
+        
+       
+        // if(!this.state.char){
+        //     return <Spinner/>
+        // }
+        // if (this.state.error){
+        //     return <ErrorMessage/>
+        // }
+
+        // const {itemDetails} = this.state;
+        // const {name} = itemDetails;
         return (
 	         <Row>
                 <Col lg={{ size: 5, offset: 1 }}>
                     <img className="shop__girl" src={process.env.PUBLIC_URL+'img/coffee_item.jpg'}   alt="girl"/>
                 </Col>
                 <Col lg="4">
-                    <div className="title">About it</div>
-                    <img className="beanslogo" src={process.env.PUBLIC_URL+'img/logo/Beans_logo_dark.svg'}   alt="Beans logo"/>
+                
+                    <div className="title">zdgfhf</div>
+                     <img className="beanslogo" src={process.env.PUBLIC_URL+'img/logo/Beans_logo_dark.svg'}   alt="Beans logo"/>
                     
                     <ShopPoint>
                         <span>Country:</span>
@@ -46,7 +98,9 @@ export default class BestDetails extends Component {
                         <span>Price:</span>
                         <span className="shop__point-price">16.99$</span>
                     </ShopPoint>
+                   
                 
+              
                 </Col>
                             
               </Row>

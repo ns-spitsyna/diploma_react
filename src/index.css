@@ -49,7 +49,7 @@ body
 	margin-top: 60px;
 }
 
-.best__wrapper,.shop__wrapper
+.list__wrapper
 {
 	display: flex;
 	flex-wrap: wrap;

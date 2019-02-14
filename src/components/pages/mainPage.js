@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-//import Preview from '../preview';
 import About from '../about';
-import BestList from '../bestList';
+import ShopList from '../shopList';
 //import BestDetails from '../bestDetails';
 
 import Header from '../header';
@@ -10,9 +9,9 @@ import {Col, Row, Container} from 'reactstrap';
 import {withRouter,Link} from 'react-router-dom';
 
 import styled from 'styled-components';
-
-
+import CoffeeService from '../../services/coffeeService.js';
 // import {Link} from 'react-router-dom';
+
 const Main = styled.div`
     background: url(${process.env.PUBLIC_URL+'/img/Main_bg.jpg'}) center center no-repeat;
     background-size: cover;
@@ -68,8 +67,47 @@ const Main = styled.div`
     
 
 `;
+const BestBlock = styled.section`
+   
+    background:  url(${process.env.PUBLIC_URL+'/img/paper.jpg'}) center center no-repeat;
+    background-color: #fff;
+    background-size: cover;
+    padding: 80px 0 110px 0;
+    div{
+         box-shadow: none!important;
+    }
+    div:hover{
+         box-shadow: none!important;
+    }
+    .title{
+        margin-bottom: 40px;
+    }
 
+    
+`;
 class MainPage extends Component{
+   
+coffeeService = new CoffeeService();
+    state = {
+        selectedItem: null, 
+        error: false
+    }
+    
+     onItemSelected = (name) => {
+        
+        this.setState({
+            selectedItem:name
+
+        })
+
+
+    }
+    // componentDidCatch(){
+        
+    //     this.setState({
+    //         error: true
+    //     })
+    // }
     render(){
         return(
             <>
@@ -94,7 +132,24 @@ class MainPage extends Component{
                 </Container>
             </Main>
             <About/> 
-            <BestList/> 
+            <BestBlock>
+            <Container>
+                    <div className="title">Our best</div>
+                        <Row>
+                            <Col lg={{ size: 10, offset: 1 }}>
+            <ShopList
+                  /*onItemSelected = {(itemName)=>{
+                    this.props.history.push(itemName)
+                }}*/
+                 getData = {this.coffeeService.getAllBest}
+                
+            /> 
+                </Col>
+                        </Row>
+                     
+                </Container>
+            
+            </BestBlock>
             <Footer/>
 
             </>
