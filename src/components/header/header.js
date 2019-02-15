@@ -43,14 +43,14 @@ const Header = () => {
         <HeaderBlock>
             <HeaderList>
             <Link to='/'>
-                    <img src={process.env.PUBLIC_URL+'img/logo/Logo.svg'}  alt="logo"/>
+                    <img src={process.env.PUBLIC_URL+'/img/logo/Logo.svg'}  alt="logo"/>
             </Link>
             </HeaderList>
             <HeaderList>
-            <Link to='/coffee'>Our coffee</Link>
+            <Link to='/coffee/'>Our coffee</Link>
             </HeaderList>
             <HeaderList>
-            <Link to='/goods'>For your pleasure </Link>
+            <Link to='/goods/'>For your pleasure </Link>
             </HeaderList>
         </HeaderBlock>
     );

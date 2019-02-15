@@ -6,10 +6,24 @@ import AboutOur from '../aboutOur';
 import ShopList from '../shopList';
 import {withRouter} from 'react-router-dom';
 import CoffeeService from '../../services/coffeeService.js';
+import ErrorMessage from '../errorMessage';
 
 class GoodsPage extends Component{
     coffeeService = new CoffeeService();
+     state = {
+         error: false
+    };
+   componentDidCatch(){
+      
+        this.setState({
+            error: true
+        })
+    }
     render(){
+          if (this.state.error){
+                return <ErrorMessage/>
+            }
+
         return(
             <>
             

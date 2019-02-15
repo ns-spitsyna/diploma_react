@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
 import About from '../about';
 import ShopList from '../shopList';
-//import BestDetails from '../bestDetails';
-
 import Header from '../header';
 import Footer from '../footer';
 import {Col, Row, Container} from 'reactstrap';
 import {withRouter,Link} from 'react-router-dom';
-
 import styled from 'styled-components';
 import CoffeeService from '../../services/coffeeService.js';
-// import {Link} from 'react-router-dom';
+import ErrorMessage from '../errorMessage';
+
 
 const Main = styled.div`
     background: url(${process.env.PUBLIC_URL+'/img/Main_bg.jpg'}) center center no-repeat;
@@ -89,26 +87,21 @@ class MainPage extends Component{
    
 coffeeService = new CoffeeService();
     state = {
-        selectedItem: null, 
-        error: false
+       error: false
     }
     
-     onItemSelected = (name) => {
+   
+    componentDidCatch(){
         
         this.setState({
-            selectedItem:name
-
+            error: true
         })
-
-
     }
-    // componentDidCatch(){
-        
-    //     this.setState({
-    //         error: true
-    //     })
-    // }
     render(){
+         if (this.state.error){
+            return <ErrorMessage/>
+        }
+
         return(
             <>
             <Main>
@@ -137,14 +130,18 @@ coffeeService = new CoffeeService();
                     <div className="title">Our best</div>
                         <Row>
                             <Col lg={{ size: 10, offset: 1 }}>
-            <ShopList
-                  /*onItemSelected = {(itemName)=>{
-                    this.props.history.push(itemName)
-                }}*/
-                 getData = {this.coffeeService.getAllBest}
-                
-            /> 
-                </Col>
+                                <ShopList
+                                        onItemSelected = {(itemName)=>{
+                                            console.log(itemName);
+                                         this.props.history.push({
+                                            pathname: itemName
+                                        })
+                                    }}
+                                     getData = {this.coffeeService.getAllBest}
+
+                                    
+                                /> 
+                            </Col>
                         </Row>
                      
                 </Container>

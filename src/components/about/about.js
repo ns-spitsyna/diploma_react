@@ -22,7 +22,7 @@ const About = () => {
 				<Row>
 					<Col lg={{ size: 6, offset: 3 }}>
                         <div className="title">About Us</div>
-                        <img className="beanslogo" src={process.env.PUBLIC_URL+'img/logo/Beans_logo_dark.svg'} alt='Beans logo' />
+                        <img className="beanslogo" src={process.env.PUBLIC_URL+'/img/logo/Beans_logo_dark.svg'} alt='Beans logo' />
                         <div className="about__text">
                             <p>
                                 Extremity sweetness difficult behaviour he of. On disposal of as landlord horrible.

@@ -1,6 +1,7 @@
- import React, {Component} from 'react';
+import React, {Component} from 'react';
 import styled from 'styled-components';
 import {Col, Row} from 'reactstrap';
+import ErrorMessage from '../errorMessage';
 const ShopPoint = styled.div`
      margin-top: 16px;
      
@@ -24,6 +25,7 @@ const ShopPoint = styled.div`
 export default class ShopDetails extends Component {
     state = {
         itemDetails: null,
+        loading: true,
         error: false
     }
 
@@ -36,25 +38,23 @@ export default class ShopDetails extends Component {
             this.updateChar();
         }
     }
-    componentDidCatch(){
-        
-        this.setState({
-            error: true
-        })
-    }
+    
+  
+  
     updateChar(){
         const {itemName} = this.props;
         if (!itemName) {
             return;
         }
         
-       
         const {getDetails} = this.props;
         
         getDetails(itemName)
             .then((itemDetails) => {
                 this.setState({itemDetails})
             })
+            
+            
         //this.foo.bar = 0;    
     }
 
@@ -64,39 +64,35 @@ export default class ShopDetails extends Component {
             return <span className="select-error">Please select a character</span>
             
         }
-        
-       
-        // if(!this.state.char){
-        //     return <Spinner/>
-        // }
-        // if (this.state.error){
-        //     return <ErrorMessage/>
-        // }
+               
+        if (this.state.error){
+            return <ErrorMessage/>
+        }
 
-        // const {itemDetails} = this.state;
-        // const {name} = itemDetails;
+        const {itemDetails} = this.state;
+        const {name, country, url, price,description } = itemDetails;
+
         return (
 	         <Row>
                 <Col lg={{ size: 5, offset: 1 }}>
-                    <img className="shop__girl" src={process.env.PUBLIC_URL+'img/coffee_item.jpg'}   alt="girl"/>
+                    <img className="shop__girl" src={url}  alt="girl"/>
                 </Col>
                 <Col lg="4">
                 
-                    <div className="title">zdgfhf</div>
-                     <img className="beanslogo" src={process.env.PUBLIC_URL+'img/logo/Beans_logo_dark.svg'}   alt="Beans logo"/>
+                    <div className="title">{name}</div>
+                     <img className="beanslogo" src={process.env.PUBLIC_URL+'/img/logo/Beans_logo_dark.svg'}  alt="Beans logo"/>
                     
                     <ShopPoint>
                         <span>Country:</span>
-                        Brazil
+                        {country}
                     </ShopPoint>
                     <ShopPoint>
                         <span>Description:</span>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        {description}
                     </ShopPoint>
                     <ShopPoint>
                         <span>Price:</span>
-                        <span className="shop__point-price">16.99$</span>
+                        <span className="shop__point-price">{price}</span>
                     </ShopPoint>
                    
                 

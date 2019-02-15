@@ -30,6 +30,28 @@ export default class CoffeeService{
         
         
     }
+
+     // getBest = async (name) =>{
+        
+     //        return character => character.name === name;
+
+
+     //  }
+    getBest = async (name) =>{
+        
+        return this.getAllCoffee(`/coffee/${name}`);
+      
+    }
+   
+         _transformCoffee({name,country, url, price,description}) {
+               
+            return {name,country, url, price,description}
+            
+        }
+        //return this.coffeeService.getAllCoffee(`coffee/${name}`);
+        //this.getResource(`/coffee/${name}`);
+
+    
     //  getBest = async (name) =>{
         
     //    // this.coffeeService.getAllCoffee()

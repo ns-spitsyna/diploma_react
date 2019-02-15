@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import {Form} from 'reactstrap';
+import CoffeeService from '../../services/coffeeService.js';
 
 const Label =styled.label`
 
         margin-right: 20px;
-        margin-bottom: 60px;
-    
+        margin-bottom: 60px;    
     
 `
 const InputSearch =styled.input`
@@ -36,11 +36,25 @@ const InputSearch =styled.input`
 
 
 export default class ShopSearch extends Component{
+    coffeeService = new CoffeeService();
+    
+
     render(){
+         
+
         return(
             <Form>
                 <Label  htmlFor="filter">Looking for</Label>
-                <InputSearch id="filter" type="text" placeholder="start typing here..."></InputSearch>
+                <InputSearch 
+                    id="filter" 
+                    type="text" 
+                    placeholder="start typing here..."
+                    onChange = {this.onUpdateSearch}
+                    
+
+                    
+
+                ></InputSearch>
             </Form>
 
         )

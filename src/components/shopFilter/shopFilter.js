@@ -41,21 +41,43 @@ const Button = styled.button`
 `  
 
 export default class ShopFilter extends Component{
+   
+ 
+  buttons = [
+                {country: 'Brazil', label: 'Brazil'},
+                {country: 'Kenya', label: 'Kenya'}
+            ]
+       
+  
     render(){
+        const buttons = this.buttons.map(({country, label}) => {
+        const {onFilterSelect} = this.props;
+
         return(
-            <Filter>
-                <div className="shop__filter-label">
-                    Or filter
-                </div>
-                <div className="shop__filter-group">
-                    <Button>Brazil</Button>
-                    <Button>Kenya</Button>
-                    <Button>Columbia</Button>
-                </div>
-            </Filter>
+            
+                    <Button
+                        key={country} 
+                        type="button" 
+                        onClick={()=> onFilterSelect(country)}
+                    >{country}</Button>
+                   
+              
             
 
         )
+    })
+    return(
+        <Filter>
+            <div className="shop__filter-label">Or filter</div>
+               
+                <div className="shop__filter-group">
+                   
+                    {buttons}
+        
+                </div>
+              
+        </Filter>
+        )
     }
-
 }
+

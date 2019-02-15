@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Spinner from '../spinner';
 import idGenerator from 'react-id-generator';
 //import CoffeeService from '../../services/coffeeService';
-
+import ErrorMessage from '../errorMessage';
 const ShopItem = styled.div`
     background: rgba(255,255,255,.65);
     border-radius: 8px;
@@ -56,8 +56,15 @@ export default class ShopList extends Component {
                 loading: false
             })
         })
+        .catch(this.onError);
     }
-
+      
+    onError= (err) => {
+            this.setState({
+                error: true,
+                loading: false
+            })
+        }
    renderItems(arr){
       
         return arr.map(({name, country, url, price, description}) => {
@@ -66,11 +73,9 @@ export default class ShopList extends Component {
                  
                 <ShopItem 
                     key={idGenerator()}
-                     /* onClick = {()=>this.props.onItemSelected(name)} */ >
+                     onClick = {()=>this.props.onItemSelected(name)}  >
                     <img src={url} alt="coffee"/>
-                    <div className="shop__item-title">
-                        {name}
-                    </div>
+                    <div className="shop__item-title">{name}</div>
                     <div className="shop__item-country">{country}</div>
                     <div className="shop__item-price">{price}</div>
                 </ShopItem>
@@ -79,14 +84,14 @@ export default class ShopList extends Component {
     }
 
     render() {
-       const {itemList, loading} = this.state;
-
-       // const errorMessage = error ? <ErrorMessage/> :null;
+       const {itemList, loading,error} = this.state;
+        const errorMessage = error ? <ErrorMessage/> :null;
         const spinner = loading ? <Spinner/>: null;
         const content = !(loading) ?  this.renderItems(itemList) : null;
         return (
             <>              
                 <div className="list__wrapper">
+                    {errorMessage}
                      {spinner}
                      {content}  
                  </div>

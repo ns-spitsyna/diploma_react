@@ -1,23 +1,38 @@
 import React, {Component} from 'react';
-//import styled from 'styled-components';
 import {Col, Row, Container} from 'reactstrap';
 import ShopSearch from '../shopSearch';
 import ShopFilter from '../shopFilter';
-//import ShopItems from '../shopItem';
 import ShopList from '../shopList';
-
-
 import Footer from '../footer';
 import Banner from '../banner';
 import AboutOur from '../aboutOur';
 import {withRouter} from 'react-router-dom';
-
 import CoffeeService from '../../services/coffeeService.js';
+import ErrorMessage from '../errorMessage';
 
 class CoffeePage extends Component{
     coffeeService = new CoffeeService();
+     state = {
+         error: false
+    };
+   componentDidCatch(){
+       //console.log('error');
+        this.setState({
+            error: true
+        })
+    }
+
+  
+  
     render(){
+       
+         if (this.state.error){
+              return <ErrorMessage/>
+          }
+
+       
         return(
+           
             <>
            
             <Banner/>
@@ -29,10 +44,14 @@ class CoffeePage extends Component{
                         <div className="line"></div>
                         <Row>
                             <Col lg={{ size: 4, offset: 2 }}>
-                            <ShopSearch/>
+                            <ShopSearch
+                                onUpdateSearch = {this.onUpdateSearch}
+                                />
                             </Col>
                             <Col lg="4">
-                                <ShopFilter/>                    
+                                <ShopFilter
+                                    
+                                />                    
                             </Col>
                             
                         </Row>
@@ -40,7 +59,13 @@ class CoffeePage extends Component{
                             <Col lg={{ size: 10, offset: 1 }}>
                             
                             <ShopList
+                              
+                                onItemSelected = {(itemName)=>{
+                                           // console.log(itemName);
+                                            this.props.history.push(itemName)
+                                    }}
                                 getData = {this.coffeeService.getAllCoffee}
+
                             />
                                
                             </Col>
@@ -52,8 +77,7 @@ class CoffeePage extends Component{
 
             </>
 
-        )
-    }
+        )}
 
-}
+};
 export default withRouter(CoffeePage);

@@ -54,7 +54,7 @@ const Footer = () => {
                         
                         <FooterItem>
                             <Link to='/'>
-                                <img src={process.env.PUBLIC_URL+'img/logo/Logo_black.svg'}  alt="logo"/>
+                                <img src={process.env.PUBLIC_URL+'/img/logo/Logo_black.svg'}  alt="logo"/>
                             </Link>
                         </FooterItem>
                         <FooterItem>
@@ -67,7 +67,7 @@ const Footer = () => {
                     </Col>
                 </Row>
             </Container>
-            <img className="beanslogo" src={process.env.PUBLIC_URL+'img/logo/Beans_logo_dark.svg'}  alt="Beans logo"/>
+            <img className="beanslogo" src={process.env.PUBLIC_URL+'/img/logo/Beans_logo_dark.svg'}  alt="Beans logo"/>
         </FooterBlock>
         
     );

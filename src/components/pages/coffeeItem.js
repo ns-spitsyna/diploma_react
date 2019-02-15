@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 //import styled from 'styled-components';
 import {Container} from 'reactstrap';
-import Header from '../header';
 import Footer from '../footer';
 import Banner from '../banner';
 import ShopDetails from '../shopDetails';
@@ -13,7 +12,7 @@ export default class CoffeeItem extends Component{
     render(){
         return(
             <>
-            <Header/>
+            
             <Banner/> 
            
                 <Container>

@@ -9,11 +9,11 @@ export default class AboutOur extends Component{
            <>
              <Row>
                 <Col lg={{ size: 4, offset: 2 }}>
-                    <img className="shop__girl" src={process.env.PUBLIC_URL+'img/coffee_girl.jpg'}   alt="girl"/>
+                    <img className="shop__girl" src={process.env.PUBLIC_URL+'/img/coffee_girl.jpg'}   alt="girl"/>
                 </Col>
                 <Col lg="4">
                     <div className="title">About our beans</div>
-                    <img className="beanslogo" src={process.env.PUBLIC_URL+'img/logo/Beans_logo_dark.svg'} alt="Beans logo"/>
+                    <img className="beanslogo" src={process.env.PUBLIC_URL+'/img/logo/Beans_logo_dark.svg'} alt="Beans logo"/>
                     <div className="shop__text">
                         <p>
                             Extremity sweetness difficult behaviour he of. On disposal of as landlord horrible.
